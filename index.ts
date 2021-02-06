@@ -1,13 +1,23 @@
 import handlebars from 'handlebars';
 import marked from 'marked';
+import fs from 'fs';
+import util from 'util';
 
-const page = 'hello!';
-const data = { content: marked(page) };
+async function readFileContent(path: string): Promise<string> {
+  const content = await util.promisify(fs.readFile)(path);
+  return content.toString();
+}
 
-const template = "Content is {{{ content }}}";
+async function main() {
+  const post = await readFileContent("sample/pages/first-post.md");
+  const page = { content: marked(post) };
 
-const compiledTemplate = handlebars.compile(template);
+  const template = await readFileContent("sample/layout/post.hbs");
 
-const out = compiledTemplate(data);
-console.log(page);
-console.log(out);
+  const compiledTemplate = handlebars.compile(template);
+  const out = compiledTemplate({ page });
+
+  console.log(out);
+}
+
+main();
