@@ -1,7 +1,7 @@
-import handlebars from 'handlebars';
-import marked from 'marked';
 import fs from 'fs';
 import util from 'util';
+import Layout from './layout';
+import Page from './page';
 
 async function readFileContent(path: string): Promise<string> {
   const content = await util.promisify(fs.readFile)(path);
@@ -9,14 +9,13 @@ async function readFileContent(path: string): Promise<string> {
 }
 
 async function main() {
-  const post = await readFileContent("sample/pages/first-post.md");
-  const page = { content: marked(post) };
+  const pageDefinition = await readFileContent('sample/pages/first-post.md');
+  const layoutDefinition = await readFileContent('sample/layout/post.hbs');
 
-  const template = await readFileContent("sample/layout/post.hbs");
+  const page = new Page(pageDefinition);
+  const layout = new Layout(layoutDefinition);
 
-  const compiledTemplate = handlebars.compile(template);
-  const out = compiledTemplate({ page });
-
+  const out = layout.render(page);
   console.log(out);
 }
 
