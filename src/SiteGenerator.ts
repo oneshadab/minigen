@@ -3,19 +3,19 @@ import Layout from './Layout';
 import Page from './Page';
 import utils from './utils';
 
-type GeneratorOptions = {
+type SiteGeneratorConfig = {
   layoutDir: string,
   pagesDir: string,
   outputDir: string,
-}
+};
 
 class SiteGenerator {
-  options: GeneratorOptions;
   layouts: Record<string, Layout> = {};
   pages: Record<string, Page> = {};
+  config: SiteGeneratorConfig;
 
-  constructor(options: GeneratorOptions) {
-    this.options = options;
+  constructor(config: SiteGeneratorConfig) {
+    this.config = config;
   }
 
   async generate() {
@@ -26,7 +26,7 @@ class SiteGenerator {
   }
 
   async loadLayouts() {
-    const layoutFiles = await utils.listAllFiles(this.options.layoutDir);
+    const layoutFiles = await utils.listAllFiles(this.config.layoutDir);
 
     const promises = layoutFiles.map(async (filepath) => {
       const layoutName = utils.extractFilename(filepath);
@@ -39,7 +39,7 @@ class SiteGenerator {
   }
 
   async loadPages() {
-    const pageFiles = await utils.listAllFiles(this.options.pagesDir);
+    const pageFiles = await utils.listAllFiles(this.config.pagesDir);
 
     const promises = pageFiles.map(async (filepath) => {
       const pageName = utils.extractFilename(filepath);
@@ -53,7 +53,7 @@ class SiteGenerator {
 
   async renderSite() {
     const promises = Object.entries(this.pages).map(async ([pageName, page]) => {
-      const targetFile = path.join(this.options.outputDir, `${pageName}.html`);
+      const targetFile = path.join(this.config.outputDir, `${pageName}.html`);
 
       const layoutForPage = this.layouts[page.layout];
       if (!layoutForPage) {
