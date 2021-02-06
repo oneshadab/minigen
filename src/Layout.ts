@@ -1,5 +1,5 @@
 import handlebars from 'handlebars';
-import Page from './page';
+import Page from './Page';
 
 class Layout {
   template: handlebars.TemplateDelegate<any>
