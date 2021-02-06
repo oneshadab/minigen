@@ -1,10 +1,13 @@
+import path from 'path';
 import SiteGenerator from './SiteGenerator';
 
 async function main() {
+  const rootDir = 'example';
+
   const generator = new SiteGenerator({
-    layoutDir: 'sample/layouts',
-    pagesDir: 'sample/pages',
-    outputDir: 'sample/out',
+    layoutDir: path.join(rootDir, 'layouts'),
+    pagesDir: path.join(rootDir, 'pages'),
+    outputDir: path.join(rootDir, 'out'),
   });
 
   generator.generate();
