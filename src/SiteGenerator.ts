@@ -26,21 +26,40 @@ class SiteGenerator {
   }
 
   async loadLayouts() {
-    const layoutName = 'post';
-    const layoutDefinition = await utils.readFileContent(`sample/layouts/${layoutName}.hbs`);
-    this.layouts[layoutName] = new Layout(layoutDefinition);
+    const layoutFiles = await utils.listAllFiles(this.options.layoutDir);
+
+    const promises = layoutFiles.map(async (filepath) => {
+      const layoutName = utils.extractFilename(filepath);
+      const layoutDefinition = await utils.readFileContent(filepath);
+
+      this.layouts[layoutName] = new Layout(layoutDefinition);
+    });
+
+    await Promise.all(promises);
   }
 
   async loadPages() {
-    const pageName = 'welcome_post';
-    const pageDefinition = await utils.readFileContent(`sample/pages/${pageName}.md`);
-    this.pages[pageName] = new Page(pageDefinition);
+    const pageFiles = await utils.listAllFiles(this.options.pagesDir);
+
+    const promises = pageFiles.map(async (filepath) => {
+      const pageName = utils.extractFilename(filepath);
+      const pageDefinition = await utils.readFileContent(filepath);
+
+      this.pages[pageName] = new Page(pageDefinition);
+    });
+
+    await Promise.all(promises);
   }
 
   async renderSite() {
     const promises = Object.entries(this.pages).map(async ([pageName, page]) => {
       const targetFile = path.join(this.options.outputDir, `${pageName}.html`);
+
       const layoutForPage = this.layouts[page.layout];
+      if (!layoutForPage) {
+        throw new Error(`No layout found for page ${pageName}`);
+      }
+
       const renderedPage = layoutForPage.render(page);
 
       await utils.writeFileContent(targetFile, renderedPage);

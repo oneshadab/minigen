@@ -2,7 +2,7 @@ import SiteGenerator from './SiteGenerator';
 
 async function main() {
   const generator = new SiteGenerator({
-    layoutDir: 'sample/layout',
+    layoutDir: 'sample/layouts',
     pagesDir: 'sample/pages',
     outputDir: 'sample/out',
   });
