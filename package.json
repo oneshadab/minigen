@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@types/handlebars": "^4.1.0",
+    "@types/marked": "^1.2.2",
     "handlebars": "^4.7.6",
     "marked": "^1.2.9",
     "ts-node": "^9.1.1",
