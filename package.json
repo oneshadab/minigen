@@ -9,6 +9,7 @@
     "@types/marked": "^1.2.2",
     "@types/node": "^14.14.25",
     "glob": "^7.1.6",
+    "gray-matter": "^4.0.2",
     "handlebars": "^4.7.6",
     "marked": "^1.2.9",
     "ts-node": "^9.1.1",
