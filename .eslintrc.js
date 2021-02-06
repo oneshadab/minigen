@@ -32,6 +32,7 @@ module.exports = {
         exceptAfterSingleLine: true,
       },
     ],
+    'class-methods-use-this': 'off',
   },
   settings: {
     'import/resolver': {

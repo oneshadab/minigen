@@ -1,4 +1,5 @@
 import marked from 'marked';
+import matter from 'gray-matter';
 
 class Page {
   title: string;
@@ -7,9 +8,11 @@ class Page {
   layout: string;
 
   constructor(pageDefinition: string) {
-    this.title = pageDefinition;
-    this.content = marked(pageDefinition);
-    this.createdAt = pageDefinition;
+    const parsedDef = matter(pageDefinition);
+
+    this.title = parsedDef.data.title;
+    this.content = marked(parsedDef.content);
+    this.createdAt = parsedDef.data.createdAt;
     this.layout = 'post';
   }
 }
