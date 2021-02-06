@@ -13,7 +13,7 @@ class Page {
     this.title = parsedDef.data.title;
     this.content = marked(parsedDef.content);
     this.createdAt = parsedDef.data.createdAt;
-    this.layout = 'post';
+    this.layout = parsedDef.data.layout ?? 'post';
   }
 }
 
