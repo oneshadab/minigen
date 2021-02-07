@@ -1,19 +1,22 @@
-import fs from 'fs';
-import util from 'util';
-import glob from 'glob';
+import fs from 'fs-extra';
 import path from 'path';
 
 async function readFileContent(filepath: string): Promise<string> {
-  const content = await util.promisify(fs.readFile)(filepath);
-  return content.toString();
+  console.log(filepath);
+  return fs.readFile(filepath, 'utf8');
 }
 
 async function writeFileContent(filepath: string, content: string): Promise<void> {
-  await util.promisify(fs.writeFile)(filepath, content);
+  await fs.writeFile(filepath, content);
 }
 
 async function listAllFiles(dirPath: string): Promise<string[]> {
-  return util.promisify(glob)((`${dirPath}/*`));
+  const filenames = await fs.readdir(dirPath);
+  return filenames.map((filename) => path.join(dirPath, filename));
+}
+
+async function copyDir(srcDir: string, dstDir: string): Promise<void> {
+  return fs.copy(srcDir, dstDir, { recursive: true });
 }
 
 function extractFilename(filePath: string): string {
@@ -25,4 +28,5 @@ export default {
   writeFileContent,
   listAllFiles,
   extractFilename,
+  copyDir,
 };
