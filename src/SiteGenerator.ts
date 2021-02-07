@@ -7,6 +7,7 @@ type SiteGeneratorConfig = {
   layoutDir: string,
   pagesDir: string,
   outputDir: string,
+  staticDir: string,
 };
 
 class SiteGenerator {
@@ -21,6 +22,8 @@ class SiteGenerator {
   async generate() {
     await this.loadLayouts();
     await this.loadPages();
+
+    await this.copyStaticAssets();
 
     await this.renderSite();
   }
@@ -66,6 +69,11 @@ class SiteGenerator {
     });
 
     await Promise.all(promises);
+  }
+
+  async copyStaticAssets() {
+    const targetDir = path.join(this.config.outputDir, 'static');
+    await utils.copyDir(this.config.staticDir, targetDir);
   }
 }
 
