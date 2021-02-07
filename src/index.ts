@@ -8,9 +8,15 @@ async function main() {
     layoutDir: path.join(rootDir, 'layouts'),
     pagesDir: path.join(rootDir, 'pages'),
     outputDir: path.join(rootDir, 'out'),
+    staticDir: path.join(rootDir, 'static'),
   });
 
-  generator.generate();
+  await generator.generate();
 }
 
-main();
+main()
+  .catch((err) => {
+    // eslint-disable-next-line no-console
+    console.error(err);
+    process.exit(1);
+  });
