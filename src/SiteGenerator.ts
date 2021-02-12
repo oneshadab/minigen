@@ -1,9 +1,13 @@
 import path from 'path';
 import Layout from './Layout';
 import Page from './Page';
+import Site from './Site';
 import utils from './utils';
 
 type SiteGeneratorConfig = {
+  title: string,
+  baseUrl: string,
+
   layoutDir: string,
   pagesDir: string,
   outputDir: string,
@@ -11,12 +15,12 @@ type SiteGeneratorConfig = {
 };
 
 class SiteGenerator {
-  layouts: Record<string, Layout> = {};
-  pages: Record<string, Page> = {};
   config: SiteGeneratorConfig;
+  site: Site;
 
   constructor(config: SiteGeneratorConfig) {
     this.config = config;
+    this.site = new Site(config.title, config.baseUrl);
   }
 
   async generate() {
@@ -35,7 +39,7 @@ class SiteGenerator {
       const layoutName = utils.extractFilename(filepath);
       const layoutDefinition = await utils.readFileContent(filepath);
 
-      this.layouts[layoutName] = new Layout(layoutDefinition);
+      this.site.layouts[layoutName] = new Layout(layoutDefinition);
     });
 
     await Promise.all(promises);
@@ -48,22 +52,22 @@ class SiteGenerator {
       const pageName = utils.extractFilename(filepath);
       const pageDefinition = await utils.readFileContent(filepath);
 
-      this.pages[pageName] = new Page(pageDefinition);
+      this.site.pages[pageName] = new Page(pageDefinition);
     });
 
     await Promise.all(promises);
   }
 
   async renderSite() {
-    const promises = Object.entries(this.pages).map(async ([pageName, page]) => {
+    const promises = Object.entries(this.site.pages).map(async ([pageName, page]) => {
       const targetFile = path.join(this.config.outputDir, `${pageName}.html`);
 
-      const layoutForPage = this.layouts[page.layout];
+      const layoutForPage = this.site.layouts[page.layout];
       if (!layoutForPage) {
         throw new Error(`No layout found for page ${pageName}`);
       }
 
-      const renderedPage = layoutForPage.render(page);
+      const renderedPage = layoutForPage.render(this.site, page);
       await utils.writeFileContent(targetFile, renderedPage);
     });
 

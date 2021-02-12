@@ -1,5 +1,6 @@
 import handlebars from 'handlebars';
 import Page from './Page';
+import Site from './Site';
 
 class Layout {
   template: handlebars.TemplateDelegate<any>
@@ -8,8 +9,8 @@ class Layout {
     this.template = handlebars.compile(layoutDefinition);
   }
 
-  render(page: Page): string {
-    return this.template({ page });
+  render(site: Site, page: Page): string {
+    return this.template({ site, page });
   }
 }
 

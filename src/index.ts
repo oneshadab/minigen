@@ -36,6 +36,9 @@ async function build(src: string, dst: string) {
   const outputDir: string = dst ?? path.join(siteDir, 'out');
 
   const defaultSiteConfig = {
+    title: 'Site',
+    baseUrl: 'http://localhost:7845',
+
     layoutDir: path.join(siteDir, 'layouts'),
     pagesDir: path.join(siteDir, 'pages'),
     staticDir: path.join(siteDir, 'static'),
