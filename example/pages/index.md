@@ -1,5 +1,5 @@
 ---
-title: Example site
+title: Home
 layout: index
 ---
 

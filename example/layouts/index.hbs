@@ -1,6 +1,34 @@
+<!doctype html>
 <html>
-  <body>
-    <div>{{ page.title }}</div>
-    <div>{{{ page.content }}}</div>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="static/css/styles.css">
+
+  <title>
+    {{ page.title }}
+  </title>
+</head>
+
+<body>
+
+  <div class="content">
+    <header class="content-header">
+      <h3 class="content-header-title">
+        <a href="{{ site.baseUrl }}" title="{{site.title}}">
+          {{ site.title }}
+        </a>
+      </h3>
+    </header>
+
+    <main class="content-main">
+      {{{ page.content }}}
+    </main>
+
+    <footer class="content-footer">
+      &copy; All rights reserved.
+    </footer>
+  </div>
+</body>
+
 </html>
