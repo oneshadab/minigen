@@ -20,10 +20,10 @@ class SiteGenerator {
   }
 
   async generate() {
+    await this.copyStaticAssets();
+
     await this.loadLayouts();
     await this.loadPages();
-
-    await this.copyStaticAssets();
 
     await this.renderSite();
   }
@@ -64,7 +64,6 @@ class SiteGenerator {
       }
 
       const renderedPage = layoutForPage.render(page);
-
       await utils.writeFileContent(targetFile, renderedPage);
     });
 

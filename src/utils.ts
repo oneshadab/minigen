@@ -2,7 +2,6 @@ import fs from 'fs-extra';
 import path from 'path';
 
 async function readFileContent(filepath: string): Promise<string> {
-  console.log(filepath);
   return fs.readFile(filepath, 'utf8');
 }
 
