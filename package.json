@@ -1,7 +1,7 @@
 {
   "name": "minigen",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "A mini static site generator",
   "main": "src/index.ts",
   "bin": "build/index.js",
   "dependencies": {
@@ -35,5 +35,5 @@
     "build": "tsc -p ."
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
