@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import path from 'path';
 import { Command } from 'commander';
 
@@ -7,21 +9,25 @@ async function main() {
   const program = new Command();
   program
     .version('0.0.1')
-    .option('-w, --watch', 'watch for changes')
-    .option('-d, --dir', 'site directory');
+    .command('build <site-directory> [output-directory]')
+    .description('build site from layout and templates')
+    .action((src, dst) => build(src, dst));
+
   program.parse(process.argv);
+}
 
-  const argOptions = program.opts();
+async function build(src: string, dst: string) {
+  const siteDir: string = src ?? './';
+  const outputDir: string = dst ?? path.join(siteDir, 'out');
 
-  const siteDir: string = argOptions.dir ?? 'example';
-  const siteConfig = {
+  const defaultSiteConfig = {
     layoutDir: path.join(siteDir, 'layouts'),
     pagesDir: path.join(siteDir, 'pages'),
-    outputDir: path.join(siteDir, 'out'),
     staticDir: path.join(siteDir, 'static'),
+    outputDir
   };
 
-  const generator = new SiteGenerator(siteConfig);
+  const generator = new SiteGenerator(defaultSiteConfig);
 
   await generator.generate();
 }

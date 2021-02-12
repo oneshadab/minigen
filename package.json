@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
+  "bin": "build/index.js",
   "dependencies": {
     "@types/commander": "^2.12.2",
     "@types/fs-extra": "^9.0.6",
@@ -30,8 +31,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "http-server -p 7268 example/out",
-    "build": "ts-node .",
-    "start": "yarn build && yarn serve"
+    "start": "ts-node .",
+    "build": "tsc -p ."
   },
   "author": "",
   "license": "ISC"
