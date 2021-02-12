@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/logo.png">
+  <img src="https://github.com/oneshadab/minigen/blob/master/docs/logo.png">
 </p>
 <hr>
 
