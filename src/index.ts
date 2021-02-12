@@ -11,7 +11,7 @@ import SiteGenerator from './SiteGenerator';
 async function main() {
   const program = new Command();
   program
-    .version('0.0.1');
+    .version(process.env.npm_package_version || '0.0.1');
 
   program
     .command('build <site-directory> [output-directory]')
@@ -20,7 +20,7 @@ async function main() {
 
   program
     .command('watch <site-directory> [output-directory]')
-    .description('watch for changes and rebuild')
+    .description('watch for changes and')
     .action((dir, port) => watch(dir, port));
 
   program

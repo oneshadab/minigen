@@ -1,6 +1,6 @@
 {
   "name": "minigen",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A mini static site generator",
   "main": "src/index.ts",
   "bin": "build/index.js",
