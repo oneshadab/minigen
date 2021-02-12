@@ -2,6 +2,7 @@
 
 import path from 'path';
 import { Command } from 'commander';
+import { createServer } from 'http-server';
 
 import SiteGenerator from './SiteGenerator';
 
@@ -12,6 +13,11 @@ async function main() {
     .command('build <site-directory> [output-directory]')
     .description('build site from layout and templates')
     .action((src, dst) => build(src, dst));
+
+  program
+    .command('serve <directory> [port]')
+    .description('serve static site from directory')
+    .action((dir, port) => serve(dir, port))
 
   program.parse(process.argv);
 }
@@ -28,8 +34,15 @@ async function build(src: string, dst: string) {
   };
 
   const generator = new SiteGenerator(defaultSiteConfig);
-
   await generator.generate();
+}
+
+async function serve(root: string, host: string = 'localhost', port: number = 7845) {
+  const server = createServer({ root });
+  server.listen(port, host, () => {
+    // eslint-disable-next-line no-console
+    console.log(`Started http server: http://${host}:${port}`);
+  })
 }
 
 main()

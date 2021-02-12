@@ -67,6 +67,13 @@
   dependencies:
     commander "*"
 
+"@types/connect@*":
+  version "3.4.34"
+  resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.34.tgz#170a40223a6d666006d93ca128af2beb1d9b1901"
+  integrity sha512-ePPA/JuI+X0vb+gSWlPKOY0NdNAie/rPUqX2GUPpbZwiKTkSPhjXWuee47E4MtE54QVzGCQMQkAL6JhV2E1+cQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/fs-extra@^9.0.6":
   version "9.0.6"
   resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.6.tgz#488e56b77299899a608b8269719c1d133027a6ab"
@@ -88,6 +95,13 @@
   integrity sha512-gq9YweFKNNB1uFK71eRqsd4niVkXrxHugqWFQkeLRJvGjnxsLr16bYtcsG4tOFwmYi0Bax+wCkbf1reUfdl4kA==
   dependencies:
     handlebars "*"
+
+"@types/http-server@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@types/http-server/-/http-server-0.10.1.tgz#3d7e52830c0c9958df52286b3a6587a5980cc666"
+  integrity sha512-13QSKWjaigFe8Syl85muw9HJHrb2gF5S9QfjI3mbyNCkd4nXzvEJTXGyzZmOAFaWXqTyavzlAD60IZuRnxV55A==
+  dependencies:
+    "@types/connect" "*"
 
 "@types/json-schema@^7.0.3":
   version "7.0.7"
