@@ -3,7 +3,7 @@
 </p>
 <hr>
 
-> A mini static site generator powered by node
+> A mini static site generator powered by [Node.js](https://nodejs.org/)
 
 ### Installation
 ```
@@ -20,7 +20,7 @@ Options:
 
 Commands:
   build <site-directory> [output-directory]  build site from layout and templates
-  watch <site-directory> [output-directory]  serve static site from directory
+  watch <site-directory> [output-directory]  watch for changes and rebuild
   serve <directory> [port]                   serve static site from directory
   help [command]                             display help for command
 ```

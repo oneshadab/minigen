@@ -20,7 +20,7 @@ async function main() {
 
   program
     .command('watch <site-directory> [output-directory]')
-    .description('serve static site from directory')
+    .description('watch for changes and rebuild')
     .action((dir, port) => watch(dir, port));
 
   program
