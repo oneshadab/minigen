@@ -12,7 +12,17 @@ npm install minigen
 
 ### Usage
 ```
-minigen build [source directory] [output directory]
+minigen [options] [command]
+
+Options:
+  -V, --version                              output the version number
+  -h, --help                                 display help for command
+
+Commands:
+  build <site-directory> [output-directory]  build site from layout and templates
+  watch <site-directory> [output-directory]  serve static site from directory
+  serve <directory> [port]                   serve static site from directory
+  help [command]                             display help for command
 ```
 
 Example
