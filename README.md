@@ -6,6 +6,12 @@
 ## MiniGen
 > A mini static site generator powered by [Node.js](https://nodejs.org/)
 
+[![NPM version](https://badge.fury.io/js/minigen.svg)](https://www.npmjs.com/package/minigen)
+![Build Statud](https://img.shields.io/badge/build-passing-blue)
+![Required Node version](https://img.shields.io/badge/node-%3E%3D12.1.0-yellow)
+![Coverage Status](https://img.shields.io/badge/coverage-92%25-green)
+![NPM](https://img.shields.io/npm/l/minigen)
+
 ### Installation
 ```
 npm install minigen
