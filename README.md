@@ -3,6 +3,7 @@
 </p>
 <hr>
 
+## MiniGen
 > A mini static site generator powered by [Node.js](https://nodejs.org/)
 
 ### Installation
