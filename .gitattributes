@@ -1,0 +1,3 @@
+example/* linguist-vendored
+test/* linguist-vendored
+*.css *.html *.txt *.hbs *.md *.js linguist-detectable=false
