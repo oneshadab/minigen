@@ -3,13 +3,19 @@ import Page from './Page';
 import Site from './Site';
 
 class Layout {
-  template: handlebars.TemplateDelegate<any>
+  template?: handlebars.TemplateDelegate<any>
 
-  constructor(layoutDefinition: string) {
-    this.template = handlebars.compile(layoutDefinition);
+  static fromDefinition(layoutDefinition: string) {
+    const layout = new Layout();
+    layout.template = handlebars.compile(layoutDefinition);
+    return layout;
   }
 
   render(site: Site, page: Page): string {
+    if (!this.template) {
+      throw new Error('No template specified for render');
+    }
+
     return this.template({ site, page });
   }
 }

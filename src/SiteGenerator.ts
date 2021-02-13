@@ -39,7 +39,7 @@ class SiteGenerator {
       const layoutName = utils.extractFilename(filepath);
       const layoutDefinition = await utils.readFileContent(filepath);
 
-      this.site.addLayout(layoutName, new Layout(layoutDefinition));
+      this.site.addLayout(layoutName, Layout.fromDefinition(layoutDefinition));
     });
 
     await Promise.all(promises);
@@ -52,7 +52,7 @@ class SiteGenerator {
       const pageName = utils.extractFilename(filepath);
       const pageDefinition = await utils.readFileContent(filepath);
 
-      this.site.addPage(pageName, new Page(pageDefinition));
+      this.site.addPage(pageName, Page.fromDefinition(pageDefinition));
     });
 
     await Promise.all(promises);

@@ -2,18 +2,21 @@ import marked from 'marked';
 import matter from 'gray-matter';
 
 class Page {
-  title: string;
-  content: string;
-  createdAt: string;
-  layout: string;
+  title: string = '';
+  content: string = '';
+  createdAt: string = '';
+  layout: string = '';
 
-  constructor(pageDefinition: string) {
+  static fromDefinition(pageDefinition: string): Page {
+    const page = new Page();
     const parsedDef = matter(pageDefinition);
 
-    this.title = parsedDef.data.title;
-    this.content = marked(parsedDef.content);
-    this.createdAt = parsedDef.data.createdAt;
-    this.layout = parsedDef.data.layout ?? 'post';
+    page.title = parsedDef.data.title;
+    page.content = marked(parsedDef.content);
+    page.createdAt = parsedDef.data.createdAt;
+    page.layout = parsedDef.data.layout ?? 'post';
+
+    return page;
   }
 }
 

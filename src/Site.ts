@@ -23,12 +23,12 @@ class Site {
   renderPage(pageName: string) {
     const page = this.pages[pageName];
     if (!page) {
-      throw new Error(`${pageName} does not exist`);
+      throw new Error(`'${pageName}' does not exist`);
     }
 
     const layoutForPage = this.layouts[page.layout];
     if (!layoutForPage) {
-      throw new Error(`No layout names ${page.layout} found for page ${pageName}`);
+      throw new Error(`No layout names '${page.layout}' found for page '${pageName}'`);
     }
 
     return layoutForPage.render(this, page);
