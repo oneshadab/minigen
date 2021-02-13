@@ -72,5 +72,6 @@
   },
   "exclude": [
     "jest.config.js",
+    "build/*"
   ]
 }

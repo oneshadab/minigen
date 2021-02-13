@@ -44,6 +44,7 @@
     "test": "jest",
     "serve": "http-server -p 7268 example/out",
     "start": "ts-node .",
+    "clean": "rm -rf build",
     "build": "tsc -p ."
   },
   "author": "Shadman Shadab",
