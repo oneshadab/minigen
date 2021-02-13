@@ -45,7 +45,7 @@
     "serve": "http-server -p 7268 example/out",
     "start": "ts-node .",
     "clean": "rm -rf build",
-    "build": "tsc -p ."
+    "build": "yarn clean && tsc -p tsconfig.build.json"
   },
   "author": "Shadman Shadab",
   "license": "MIT"
