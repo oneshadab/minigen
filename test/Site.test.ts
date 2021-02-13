@@ -1,7 +1,4 @@
-import Page from 'src/Page';
-import Layout from 'src/Layout';
-import Site from 'src/Site';
-
+import { Page, Site, Layout } from 'src/MiniGen';
 
 describe('Site class', () => {
   describe('.renderPage', () => {

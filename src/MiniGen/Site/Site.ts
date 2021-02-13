@@ -1,5 +1,5 @@
-import Page from'./Page';
-import Layout from './Layout';
+import Page from'../Page/Page';
+import Layout from '../Layout/Layout';
 
 class Site {
   title: String;

@@ -1,8 +1,11 @@
 import path from 'path';
-import Layout from './Layout';
-import Page from './Page';
+
+import utils from '../../utils';
+
+import Layout from '../Layout/Layout';
+import Page from '../Page/Page';
+
 import Site from './Site';
-import utils from './utils';
 
 type SiteGeneratorConfig = {
   title: string,

@@ -3,7 +3,7 @@ import path from 'path';
 import chokidar from 'chokidar';
 import { createServer } from 'http-server';
 
-import SiteGenerator from './SiteGenerator';
+import SiteGenerator from './Site/SiteGenerator';
 
 export module MiniGen {
   export async function build(src: string, dst: string) {
