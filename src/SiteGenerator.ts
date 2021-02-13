@@ -39,7 +39,7 @@ class SiteGenerator {
       const layoutName = utils.extractFilename(filepath);
       const layoutDefinition = await utils.readFileContent(filepath);
 
-      this.site.layouts[layoutName] = new Layout(layoutDefinition);
+      this.site.addLayout(layoutName, new Layout(layoutDefinition));
     });
 
     await Promise.all(promises);
@@ -52,22 +52,17 @@ class SiteGenerator {
       const pageName = utils.extractFilename(filepath);
       const pageDefinition = await utils.readFileContent(filepath);
 
-      this.site.pages[pageName] = new Page(pageDefinition);
+      this.site.addPage(pageName, new Page(pageDefinition));
     });
 
     await Promise.all(promises);
   }
 
   async renderSite() {
-    const promises = Object.entries(this.site.pages).map(async ([pageName, page]) => {
+    const promises = Object.keys(this.site.pages).map(async (pageName) => {
       const targetFile = path.join(this.config.outputDir, `${pageName}.html`);
+      const renderedPage = this.site.renderPage(pageName);
 
-      const layoutForPage = this.site.layouts[page.layout];
-      if (!layoutForPage) {
-        throw new Error(`No layout found for page ${pageName}`);
-      }
-
-      const renderedPage = layoutForPage.render(this.site, page);
       await utils.writeFileContent(targetFile, renderedPage);
     });
 
