@@ -15,7 +15,12 @@ async function listAllFiles(dirPath: string): Promise<string[]> {
 }
 
 async function copyDir(srcDir: string, dstDir: string): Promise<void> {
-  return fs.copy(srcDir, dstDir, { recursive: true });
+  return (
+    /* TODO: JSFIX could not patch the breaking change:
+    Allow copying broken symlinks 
+    Suggested fix: You can use the exists and existsSync functions https://nodejs.org/api/fs.html#fsexistspath-callback from the fs module to check if a symlink is broken. */
+    fs.copy(srcDir, dstDir, { recursive: true })
+  );
 }
 
 function extractFilename(filePath: string): string {
